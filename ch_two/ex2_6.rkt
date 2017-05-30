@@ -45,7 +45,7 @@
        ( apply_times function (function x) (- m 1) ) ) )
 
 ; Let's test that this actually works
-(display "TEST: generate and evaluate numeral for 5" )
+(display "TEST: increment zero, five times" )
 (newline)
 
 (apply_times successor 0 5)
