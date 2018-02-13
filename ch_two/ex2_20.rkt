@@ -1,6 +1,6 @@
 #lang sicp
 ; ex 2_20
-; let's implement our own map function
+; let's implement our own filter function
 ; input: x is a list
 ; predicate is a function that returns a boolean for an element of x
 (define (construct-list x predicate)
