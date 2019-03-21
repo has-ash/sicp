@@ -10,14 +10,14 @@
         ( else 
         (let ( (head_a (car set_a) )
                (head_b (car set_b) ) )
-          (cond ( (= head_a head_b)
-                  (append (list head_a)
+          (cond ( (eq? head_a head_b)
+                  (cons head_a
                           (union-set (cdr set_a) (cdr set_b) ) ) )
                 ( (< head_a head_b)
-                  (append (list head_a)
+                  (cons head_a
                           (union-set (cdr set_a) set_b) ) )
                 ( else
-                  (append (list head_b)
+                  (cons head_b
                           (union-set set_a (cdr set_b) ) ) ) ) ) ) ) )
 
 ; From the previous section of the book. O(n)
