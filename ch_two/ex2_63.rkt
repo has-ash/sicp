@@ -1,5 +1,5 @@
 #lang sicp
-
+(#%provide (all-defined) )
 
 ; ex2-63
 ; tree-list 1
@@ -63,9 +63,9 @@
                              (make-tree 6
                                         (make-tree 7 '() '() )
                                         (make-tree 8 '() '() ) ) ) )
-some_tree
-(tree->list-1 some_tree)
-(tree->list-2 some_tree)
+;some_tree
+;(tree->list-1 some_tree)
+;(tree->list-2 some_tree)
 
 
  
