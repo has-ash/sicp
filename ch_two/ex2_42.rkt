@@ -97,3 +97,9 @@
        (newline) )
      (enumerate-interval 1 10) )
 
+
+;ex 2.43
+
+; Since we now do the recurisve call queen-cols once for each element in
+; enumerate, at each recursion level, we duplicate the work
+; and so we get T + 2T + 3T + .... nT  ---> approx. n^2 T 
