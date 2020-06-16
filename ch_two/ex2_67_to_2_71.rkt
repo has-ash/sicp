@@ -190,3 +190,19 @@ pairs
 ;; with a fixed length code, since we have 8 = 2^3 symbols, we neeed 3 bits for each
 ;; symbol. This gives a total of 3 * 36 = 108 bits. 
 
+;; ex 2_71
+
+;; the huffman tree is like a list (very unbalanced)
+;; we get 1 bit for the most frequent symbol (first leaf node is 1 level deep)
+;; and n-1 bits for the least frequent symbol(s). You can see this in this sketch of
+;; of a small huffman tree
+
+;;           (1,2,4,8)
+;;           /        \
+;;          /         (8)
+;;         (1,2,4)
+;;        /      \
+;;       /       (4)
+;;     (1,2)
+;;     /    \
+;;    (1)   (2)
