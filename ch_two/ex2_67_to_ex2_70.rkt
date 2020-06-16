@@ -79,6 +79,8 @@
 
 ; use decode to decode the message and give the result
 
+(display "ex2_67 decode message result:\n")
+
 (decode sample-message sample-tree)
 (define decoded-message (decode sample-message sample-tree) ); for use later
 
@@ -100,7 +102,7 @@
   (let ((tree-symbols (symbols tree) ))
     (in-list? symbol tree-symbols) ) )
 
-(symbol-in-tree? 'A sample-tree)
+;(symbol-in-tree? 'A sample-tree)
 
 (define (enc-symb symb tree bits)
   (if (leaf? tree)
@@ -123,14 +125,68 @@
 ;(encode-symbol 'D sample-tree)
 
 ; encode decoded symbols
+(display "ex2_68 - encoded message followed by true message (should be same):\n")
 (encode decoded-message sample-tree)
 sample-message
-      
 
 
+; ex 2.69
+
+(define (generate-huffman-tree pairs)
+  (successive-merge (make-leaf-set pairs)))
+
+
+;; solution
+
+(define (successive-merge ordered-set)
+  (if (null? (cdr ordered-set) )
+      (car ordered-set)
+      (successive-merge (adjoin-set
+                         (make-code-tree
+                          (car ordered-set)
+                          (cadr ordered-set) )
+                         (cddr ordered-set) ) ) ) )
+
+;; test successive-merge
+(define pairs (list (list 'A 4) (list 'B 2) (list 'C 1) (list 'D 1) ) )
+
+(define leaf-set-of-pairs (make-leaf-set pairs) )
+
+(display "ex2_69 - successive merge result: \n")
+(successive-merge leaf-set-of-pairs )
+(display "for pairs: \n")
+pairs
+
+; ex 2.70
  
+(define music-pairs (list (list 'a 2)
+                          (list 'boom 1)
+                          (list 'Get 2)
+                          (list 'job 2)
+                          (list 'Sha 3)
+                          (list 'na 16)
+                          (list 'Wah 1)
+                          (list 'yip 9) ) )
 
+(define lyrics-to-be-encoded (list 'Get 'a 'job
+                                   'Sha 'na 'na 'na 'na 'na 'na 'na 'na
+                                   'Get 'a 'job
+                                   'Sha 'na 'na 'na 'na 'na 'na 'na 'na
+                                   'Wah 'yip 'yip 'yip 'yip 'yip 'yip 'yip 'yip 'yip
+                                   'Sha 'boom) )
 
+(define music-huffman-tree (generate-huffman-tree music-pairs) )
 
+(define (count-list-elements a-list)
+  (define (helper a-list count)
+    (if (null? a-list)
+        count
+        (helper (cdr a-list) (+ count 1) ) ) )
+  (helper a-list 0 ) )
 
+(display "ex 2_70 - number of bits required: \n")
+(count-list-elements (encode lyrics-to-be-encoded music-huffman-tree) )
+
+;; with a fixed length code, since we have 8 = 2^3 symbols, we neeed 3 bits for each
+;; symbol. This gives a total of 3 * 36 = 108 bits. 
 
